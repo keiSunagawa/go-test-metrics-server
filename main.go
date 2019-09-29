@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -19,26 +17,20 @@ const (
 	namespace = "test-metrics"
 )
 
-type weatherData struct {
-	Main struct {
-		Temp     float64 `json:"temp"`
-		Pressure float64 `json:"pressure"`
-		Humidity float64 `json:"humidity"`
-	}
+type topCommand interface {
+    GetMemoryUsagePer() int64
+    GetCPUUsagePer() int64
 }
 
-interface topCommand struct {
-    GetMemoryUsagePer() int
-    GetCPUUsagePer() int
+
+type topMock struct {}
+
+func (t topMock) GetMemoryUsagePer() int64 {
+    return 50
 }
 
-struct topMock {}
-func (t *topMock) GetMemoryUsagePer(){
-    50
-}
-
-func (t *topMock) GetCPUUsagePer(){
-    70
+func (t topMock) GetCPUUsagePer() int64 {
+    return 70
 }
 
 type topCommandCollector struct {
@@ -81,7 +73,7 @@ func (c *topCommandCollector) Collect(ch chan<- prometheus.Metric) {
 	)}
 
 func metricsHandler(w http.ResponseWriter, r *http.Request) {
-	c := newOpenWeatherMapCollector(topMock {})
+	c := newTopCommandCollector(topMock {})
 	registry := prometheus.NewRegistry()
 	registry.MustRegister(c)
 
