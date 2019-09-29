@@ -27,11 +27,11 @@ type topCommand interface {
 type topMock struct {}
 
 func (t topMock) GetMemoryUsagePer() float64 {
-    return rand.Intn(100)
+    return float64(rand.Intn(100))
 }
 
 func (t topMock) GetCPUUsagePer() float64 {
-    return rand.Intn(100)
+    return float64(rand.Intn(100))
 }
 
 type topCommandCollector struct {
