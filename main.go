@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 	"net/http"
+	"math/rand"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -26,11 +27,11 @@ type topCommand interface {
 type topMock struct {}
 
 func (t topMock) GetMemoryUsagePer() float64 {
-    return 50
+    return rand.Intn(100)
 }
 
 func (t topMock) GetCPUUsagePer() float64 {
-    return 70
+    return rand.Intn(100)
 }
 
 type topCommandCollector struct {
