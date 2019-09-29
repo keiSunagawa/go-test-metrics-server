@@ -14,7 +14,7 @@ var (
 )
 
 const (
-	namespace = "test-metrics"
+	namespace = "test_metrics"
 )
 
 type topCommand interface {
