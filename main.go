@@ -44,8 +44,8 @@ func newTopCommandCollector(cmd topCommand) *topCommandCollector {
 		topCommandInterface: cmd,
 		memoryUsageG: prometheus.NewGauge(prometheus.GaugeOpts{
 			Namespace: namespace,
-			Name:      "cpu_usage",
-			Help:      "cpu usage percent form top command",
+			Name:      "memory_usage",
+			Help:      "memory usage percent form top command",
 		}),
 		cpuUsageG: prometheus.NewGauge(prometheus.GaugeOpts{
 			Namespace: namespace,
