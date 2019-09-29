@@ -62,13 +62,13 @@ func (c *topCommandCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (c *topCommandCollector) Collect(ch chan<- prometheus.Metric) {
 	ch <- prometheus.MustNewConstMetric(
-		c.temp.Desc(),
-		c.memoryUsageG,
+		c.memoryUsageG.Desc(),
+		prometheus.GaugeValue,
 		c.topCommandInterface.GetMemoryUsagePer(),
 	)
 	ch <- prometheus.MustNewConstMetric(
-		c.pressure.Desc(),
-		c.cpuUsageG,
+		c.cpuUsageG.Desc(),
+		prometheus.GaugeValue,
 		c.topCommandInterface.GetUPUUsagePer(),
 	)}
 
