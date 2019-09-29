@@ -69,7 +69,7 @@ func (c *topCommandCollector) Collect(ch chan<- prometheus.Metric) {
 	ch <- prometheus.MustNewConstMetric(
 		c.cpuUsageG.Desc(),
 		prometheus.GaugeValue,
-		c.topCommandInterface.GetUPUUsagePer(),
+		c.topCommandInterface.GetCPUUsagePer(),
 	)}
 
 func metricsHandler(w http.ResponseWriter, r *http.Request) {
