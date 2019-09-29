@@ -18,18 +18,18 @@ const (
 )
 
 type topCommand interface {
-    GetMemoryUsagePer() int64
-    GetCPUUsagePer() int64
+    GetMemoryUsagePer() float64
+    GetCPUUsagePer() float64
 }
 
 
 type topMock struct {}
 
-func (t topMock) GetMemoryUsagePer() int64 {
+func (t topMock) GetMemoryUsagePer() float64 {
     return 50
 }
 
-func (t topMock) GetCPUUsagePer() int64 {
+func (t topMock) GetCPUUsagePer() float64 {
     return 70
 }
 
